@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class InfoTurnoTest
+public class TurnInfoTest
 {
     /* Como jugador, quiero saber de quién es el turno para estar seguro de cuándo atacar o esperar.
     Criterios de aceptación:

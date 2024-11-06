@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class AtacarTest
+public class AttackTest
 {
     /*  Como jugador, quiero atacar en mi turno y hacer daño basado en la efectividad de los tipos de Pokémon.
         Criterios de aceptación:

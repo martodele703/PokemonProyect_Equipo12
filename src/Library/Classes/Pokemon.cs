@@ -5,15 +5,13 @@ namespace Poke.Clases;
 public class  Pokemon
 {
     public string Name { get; set; }
-    public int AttackCapacity;
-    public string? State {get; set;}
+    public int AttackCapacity { get; set; }
+    public string? State { get; set; }
     public double Hp { get; set; }
     public Type.PokemonType Type { get; set; }
     public List<Attack> AttackList { get; set; }
-    
-    // Estados causados por ataques especiales
+        
     public int? SleepState { get; set; }  // Cantidad de turnos dormido, null si no está dormido
-    
     public bool Paralized { get; set; }
     public bool Poisoned { get; set; }
     public bool Burned { get; set; }
@@ -53,7 +51,7 @@ public class  Pokemon
         }
     }
 
-    public void AddAtaque(Attack nuevoAtaque)
+    public void AddAtack(Attack nuevoAtaque)
     {
         if (AttackList.Count < 4)
         {
@@ -77,9 +75,9 @@ public class  Pokemon
         Console.WriteLine($"{this.Name} recuperó {hp} puntos de vida.");
     }
 
-    public List<Attack> GetAtaques() // falta este método
+    public List<Attack> GetAtacks() 
     {
-        return null;
+        return AttackList;
     }
 
     public Type.PokemonType GetType()

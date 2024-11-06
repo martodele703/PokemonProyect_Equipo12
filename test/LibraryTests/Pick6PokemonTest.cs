@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class Elegir6PokemonTest
+public class Pick6PokemonTest
 {
     /* Como jugador, quiero elegir 6 Pokémons del catálogo disponible para comenzar la batalla.
     Criterios de aceptación:

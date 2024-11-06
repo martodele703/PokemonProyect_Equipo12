@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class UsarItemTest
+public class UseItemTest
 {
     /* Como entrenador, quiero poder usar un ítem durante una batalla.
         Criterios de aceptación:
