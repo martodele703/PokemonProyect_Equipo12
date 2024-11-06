@@ -3,37 +3,37 @@ namespace Poke.Clases;
 public class Player
 {
     // Atributos privados
-    public List<Pokemon> Pokemones;
-    public Pokemon PokemonActual;
+    public List<Pokemon> Pokemons;
+    public Pokemon ActualPokemon;
     public List<Items> Items;
-    private string nombre { get; set; }
+    private string name { get; set; }
 
     // Constructor
-    public Player(string nombre, Pokemon PokemonActual)
+    public Player(string name, Pokemon ActualPokemon)
     {
-        Pokemones = new List<Pokemon>();
-        this.PokemonActual = PokemonActual;
-        this.nombre = nombre;
+        Pokemons = new List<Pokemon>();
+        this.ActualPokemon = ActualPokemon;
+        this.name = name;
         
         Items = new List<Items>();
         // Agrego los items
         
-        Items.Add(new SuperPocion());
-        Items.Add(new SuperPocion());
-        Items.Add(new SuperPocion());
-        Items.Add(new SuperPocion());
+        Items.Add(new SuperPotion());
+        Items.Add(new SuperPotion());
+        Items.Add(new SuperPotion());
+        Items.Add(new SuperPotion());
         
-        Items.Add(new CuraTotal());
-        Items.Add(new CuraTotal());
+        Items.Add(new TotalCure());
+        Items.Add(new TotalCure());
         
-        Items.Add(new RevivirPocion());
+        Items.Add(new RevivePotion());
         
     }
     
-    public double VidaPokemon()
+    public double PokemonLife()
     {
         double suma = 0;
-        foreach (var pokemon in Pokemones)
+        foreach (var pokemon in Pokemons)
         {
             suma += pokemon.Hp;
         }
@@ -54,17 +54,17 @@ public class Player
     //Metodo para obtener la info de todos los pokemones
     public void GetPokemonsInfo()
     {
-        foreach (var pokemon in Pokemones)
+        foreach (var pokemon in Pokemons)
         {
-            Console.WriteLine(pokemon.Nombre);
+            Console.WriteLine(pokemon.Name);
             Console.WriteLine(pokemon.Hp);
         }
     }
     
     // Método para obtener el Pokémon actual
-    public Pokemon getPokemonActual()
+    public Pokemon getActualPokemon()
     {
-        return PokemonActual;
+        return ActualPokemon;
     }
 
     public void RemoveItem(Items item)
@@ -73,8 +73,8 @@ public class Player
     }
     
     // Método para usar un item
-    public void usarItem(Items item, Pokemon objetivo)
+    public void useItem(Items item, Pokemon objective)
     {
-        item.Usar(objetivo);
+        item.Use(objective);
     }
 }    

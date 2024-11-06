@@ -1,17 +1,17 @@
 namespace Poke.Clases;
 
-public class RevivirPocion : Items
+public class RevivePotion : Items
 {
-    public RevivirPocion()
+    public RevivePotion()
     {
-        Nombre = "Revivir";
+        Name = "Revivir";
     }
 
-    public override void Usar(Pokemon objetivo)
+    public override void Use(Pokemon objective)
     {
-        if (objetivo.GetHp() == 0)
+        if (objective.GetHp() == 0)
         {
-            objetivo.AddHP(objetivo.Hp / 2);  // Revive con el 50% del HP total
+            objective.AddHP(objective.Hp / 2);  // Revive con el 50% del HP total
         }
     }
 }

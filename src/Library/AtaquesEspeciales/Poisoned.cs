@@ -2,12 +2,12 @@ namespace Poke.Clases;
 
 public class Poisoned
 {
-    public void Envenenar(Pokemon objetivo)
+    public void Envenenar(Pokemon objective)
     {
-        objetivo.State = "Poisoned";
-        if (objetivo.State == "Poisoned")
+        objective.State = "Poisoned";
+        if (objective.State == "Poisoned")
         {
-            objetivo.Hp *= 0.95;
+            objective.Hp *= 0.95;
         }
     }
 }

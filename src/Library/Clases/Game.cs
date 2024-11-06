@@ -2,54 +2,55 @@ namespace Poke.Clases;
 
 public class Game
 {
-    private Pokemon pokemonJugador;
-    private int turnoAleatorio { get; set; }
-    private Pokemon pokemonOponente;
-    private Plays plays;
-
-    private int turno;
+    
+    public int AleatoryTurn { get; set; }
+    
+    public Plays plays;
+    
+    public int Turn;
+    
     // Constructor
-    public Pokemon PokemonJugador { get; set; }
-    public Pokemon PokemonOponente { get; set; }
-    public int TurnoActual { get; set; }
+    public Pokemon PlayerPokemon { get; set; }
+    public Pokemon OpponentPokemon { get; set; }
+    public int ActualTurn { get; set; }
 
-    public void JugadaInicial(Player jugador1, Player jugador2, Pokemon nuevoPokemon, Items item, Pokemon objetivo)
+    public void InitialTurn(Player player1, Player player2, Pokemon newPokemon, Items item, Pokemon objective)
     {
         Random random = new Random();
-        int primerTurno = random.Next(1, 3);
-        if (primerTurno == 1)
+        int firstTurn = random.Next(1, 3);
+        if (firstTurn == 1)
         {
-            turno = 1;
+            Turn = 1;
         }
         else
         {
-            turno = 2;
+            Turn = 2;
         }
     }
-    public Game(Pokemon pokemonJugador, Pokemon pokemonOponente)
+    public Game(Pokemon pokemonplayer, Pokemon opponentPokemon)
     {
-        PokemonJugador = pokemonJugador;
-        PokemonOponente = pokemonOponente;
+        PlayerPokemon = pokemonplayer;
+        OpponentPokemon = opponentPokemon;
         plays = new Plays();
-        TurnoActual = 1;
+        ActualTurn = 1;
     }
 
-    public string JugarTurno(Player jugador1, Player jugador2)
+    public string PlayTurn(Player player1, Player player2)
     {
-        if (turno == 1)
+        if (Turn == 1)
         {
             Console.WriteLine("Turno del jugador 1");
-            plays.PosiblesJugadas(jugador1, jugador2, jugador1.Items[0], jugador2.PokemonActual);
-            turno = 2; // Cambia de turno para que vaya el otro jugador
+            plays.PossiblePlays(player1, player2, player1.Items[0], player2.ActualPokemon);
+            Turn = 2; // Cambia de turno para que vaya el otro jugador
         }
         else
         {
             Console.WriteLine("Turno del jugador 2");
-            plays.PosiblesJugadas(jugador1, jugador2, jugador1.Items[0], jugador2.PokemonActual);
-            turno = 1; // Idem que arriba
+            plays.PossiblePlays(player1, player2, player1.Items[0], player2.ActualPokemon);
+            Turn = 1; // Idem que arriba
         }
-        TurnoActual += 1;
-        if (JuegoTerminado(jugador1, jugador2) == true)
+        ActualTurn += 1;
+        if (GameFinished(player1, player2) == true)
         {
             return "Juego terminado";
         }
@@ -59,30 +60,27 @@ public class Game
         }
     }
 
-    public void InfoTurno(Player jugador1, Player jugador2)
+    public void InfoTurn(Player player1, Player player2)
     {
-        Console.WriteLine("Turno: " + TurnoActual);
+        Console.WriteLine("Turno: " + ActualTurn);
         Console.WriteLine($"Información de los pokemones totales del juego:");
-        jugador1.GetPokemonsInfo();
-        jugador2.GetPokemonsInfo();
+        player1.GetPokemonsInfo();
+        player2.GetPokemonsInfo();
     }
-    public bool JuegoTerminado(Player jugador1, Player jugador2)
+    public bool GameFinished(Player player1, Player player2)
     {
-        jugador1.VidaPokemon();
-        jugador2.VidaPokemon();
-        if (jugador1.VidaPokemon() == 0)
+        player1.PokemonLife();
+        player2.PokemonLife();
+        if (player1.PokemonLife() == 0)
         {
-            Console.WriteLine("El jugador 2 ha ganado");
+            Console.WriteLine("El player 2 ha ganado");
             return true;
         }
-        else if (jugador2.VidaPokemon() == 0)
+        else if (player2.PokemonLife() == 0)
         {
-            Console.WriteLine($"El jugador 1 ha ganado");
+            Console.WriteLine($"El player 1 ha ganado");
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 }

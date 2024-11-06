@@ -2,13 +2,14 @@ namespace Poke.Clases;
 
 public class Paralized
 {
-    public void Paralizar(Pokemon objetivo)
+    public void Paralize(Pokemon objective)
     {
-        objetivo.State = "Paralized";
-        if (objetivo.State == "Paralized")
+        objective.State = "Paralizado";
+        if (objective.State == "Paralizado")
+            
         {
             Random random = new Random();
-            int capacidadDeAtacar = random.Next(0,2); // 0 o 1 definen si puede atacar
+            int atackCapacity = random.Next(0,2); // 0 o 1 definen si puede atacar
         }
     }
 }
