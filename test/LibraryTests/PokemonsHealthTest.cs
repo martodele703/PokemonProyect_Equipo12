@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class VidaPokemonsTest
+public class PokemonsHealthTest
 {
     /*  Como jugador, quiero ver la cantidad de vida (HP) de mis Pokémons y de los Pokémons oponentes para saber cuánta salud tienen.
         Criterios de aceptación:

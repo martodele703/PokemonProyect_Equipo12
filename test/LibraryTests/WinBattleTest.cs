@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class GanarBatallaTest
+public class WinBattleTest
 {
     /* Como jugador, quiero ganar la batalla cuando la vida de todos los Pokémons oponente llegue a cero.
     Criterios de aceptación:

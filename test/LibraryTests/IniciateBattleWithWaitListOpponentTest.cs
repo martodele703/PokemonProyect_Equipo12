@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class IniciarBatallaConJugadorEsperandoTest
+public class IniciateBattleWithWaitListOpponentTest
 {
     /* Como entrenador, quiero iniciar una ballata con un jugador que está esperando por un oponente.
         Criterios de aceptación:

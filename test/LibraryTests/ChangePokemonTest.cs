@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class CambiarPokemonTest
+public class ChangePokemonTest
 {
     /* Como jugador, quiero poder cambiar de Pokémon durante una batalla.
         Criterios de aceptación:

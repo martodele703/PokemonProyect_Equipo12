@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class JugadoresEsperandoTest
+public class PlayersWaitListTest
 {
     /* Como entrenador, quiero ver la lista de jugadores esperando por un oponente.
         Criterios de aceptación:

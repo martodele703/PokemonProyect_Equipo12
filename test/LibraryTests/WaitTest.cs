@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class EsperarTest
+public class WaitTest
 {
     /* Como entrenador, quiero unirme a la lista de jugadores esperando por un oponente.
         Criterios de aceptación:
