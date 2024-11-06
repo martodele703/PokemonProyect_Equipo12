@@ -1,7 +1,8 @@
 namespace Poke.Clases;
 
-public class Type
+public static class Type
 {
+    public static PokemonType type;
     public enum PokemonType
     {
         Agua,

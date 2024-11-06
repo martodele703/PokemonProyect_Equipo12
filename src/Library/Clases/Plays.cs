@@ -1,6 +1,6 @@
 namespace Poke.Clases;
 
-public class Jugadas
+public class Plays
 {
     public void PosiblesJugadas(Player jugador1, Player jugador2, Items item, Pokemon objetivo)
     {

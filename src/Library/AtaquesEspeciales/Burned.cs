@@ -1,11 +1,11 @@
 namespace Poke.Clases;
 
-public class Quemado
+public class Burned
 {
     public void Quemar(Pokemon objetivo)
     {
-        objetivo.estado = "Quemado";
-        if (objetivo.estado == "Quemado")
+        objetivo.State = "Burned";
+        if (objetivo.State == "Burned")
         {
             objetivo.Hp *= 0.9;
         }

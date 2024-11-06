@@ -5,7 +5,7 @@ public class Game
     private Pokemon pokemonJugador;
     private int turnoAleatorio { get; set; }
     private Pokemon pokemonOponente;
-    private Jugadas jugadas;
+    private Plays plays;
 
     private int turno;
     // Constructor
@@ -30,7 +30,7 @@ public class Game
     {
         PokemonJugador = pokemonJugador;
         PokemonOponente = pokemonOponente;
-        jugadas = new Jugadas();
+        plays = new Plays();
         TurnoActual = 1;
     }
 
@@ -39,13 +39,13 @@ public class Game
         if (turno == 1)
         {
             Console.WriteLine("Turno del jugador 1");
-            jugadas.PosiblesJugadas(jugador1, jugador2, jugador1.Items[0], jugador2.PokemonActual);
+            plays.PosiblesJugadas(jugador1, jugador2, jugador1.Items[0], jugador2.PokemonActual);
             turno = 2; // Cambia de turno para que vaya el otro jugador
         }
         else
         {
             Console.WriteLine("Turno del jugador 2");
-            jugadas.PosiblesJugadas(jugador1, jugador2, jugador1.Items[0], jugador2.PokemonActual);
+            plays.PosiblesJugadas(jugador1, jugador2, jugador1.Items[0], jugador2.PokemonActual);
             turno = 1; // Idem que arriba
         }
         TurnoActual += 1;
