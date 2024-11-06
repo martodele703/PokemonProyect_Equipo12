@@ -2,44 +2,44 @@ namespace Poke.Clases;
 
 public class Plays
 {
-    public void PosiblesJugadas(Player jugador1, Player jugador2, Items item, Pokemon objetivo)
+    public void PossiblePlays(Player player1, Player player2, Items item, Pokemon objective)
     {
         Console.WriteLine("1. Atacar \n 2. Cambiar de Pokemon \n 3. Usar Item");
-        string eleccionJugada = Console.ReadLine();
-        if (eleccionJugada == "1")
+        string playElection = Console.ReadLine();
+        if (playElection == "1")
         {
             // Mostrar los ataques disponibles
             Console.WriteLine("Selecciona un ataque:");
-            for (int i = 0; i < jugador1.PokemonActual.ListaDeAtaques.Count; i++)
+            for (int i = 0; i < player1.ActualPokemon.AttackList.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {jugador1.PokemonActual.ListaDeAtaques[i].Nombre}");
+                Console.WriteLine($"{i + 1}. {player1.ActualPokemon.AttackList[i].Name}");
             }
 
             // Leer la elección del usuario
-            if (int.TryParse(Console.ReadLine(), out int ataqueSeleccionadoIndex) &&
-                ataqueSeleccionadoIndex > 0 &&
-                ataqueSeleccionadoIndex <= jugador1.PokemonActual.ListaDeAtaques.Count)
+            if (int.TryParse(Console.ReadLine(), out int selectedAtackIndex) &&
+                selectedAtackIndex > 0 &&
+                selectedAtackIndex <= player1.ActualPokemon.AttackList.Count)
             {
                 // Obtener el ataque seleccionado de la lista
-                Attack ataqueSeleccionado = jugador1.PokemonActual.ListaDeAtaques[ataqueSeleccionadoIndex - 1];
+                Attack selectedAtack = player1.ActualPokemon.AttackList[selectedAtackIndex - 1];
 
                 // Realizar el ataque con el ataque seleccionado
-                jugador1.PokemonActual.Atacar(jugador2.PokemonActual, jugador1.PokemonActual, ataqueSeleccionado);
+                player1.ActualPokemon.Atack(player2.ActualPokemon, player1.ActualPokemon, selectedAtack);
             }
-            else if (eleccionJugada == "2")
+            else if (playElection == "2")
             {
                 Console.WriteLine("Selecciona un Pokemon:");
-                for (int i = 0; i < jugador1.Pokemones.Count; i++)
+                for (int i = 0; i < player1.Pokemons.Count; i++)
                 {
-                    Console.WriteLine($"{i + 1}. {jugador1.Pokemones[i].Nombre}");
+                    Console.WriteLine($"{i + 1}. {player1.Pokemons[i].Name}");
                 }
-                string nuevoPokemon = Console.ReadLine();
-                Pokemon pokemonSeleccionado = jugador1.Pokemones[int.Parse(nuevoPokemon) - 1];
-                jugador1.PokemonActual = pokemonSeleccionado;
+                string newPokemon = Console.ReadLine();
+                Pokemon selectedPokemon = player1.Pokemons[int.Parse(newPokemon) - 1];
+                player1.ActualPokemon = selectedPokemon;
             }
-            else if (eleccionJugada == "3")
+            else if (playElection == "3")
             {
-                item.Usar(objetivo);
+                item.Use(objective);
             }
             else
             {

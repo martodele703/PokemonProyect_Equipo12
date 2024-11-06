@@ -4,31 +4,31 @@ namespace Poke.Clases;
 
 public class  Pokemon
 {
-    public string Nombre { get; set; }
-    public int CapacidadDeAtacar;
+    public string Name { get; set; }
+    public int AttackCapacity;
     public string? State {get; set;}
     public double Hp { get; set; }
     public Type.PokemonType Type { get; set; }
-    public List<Attack> ListaDeAtaques { get; set; }
+    public List<Attack> AttackList { get; set; }
     
     // Estados causados por ataques especiales
-    public int? EstadoDormido { get; set; }  // Cantidad de turnos dormido, null si no está dormido
+    public int? SleepState { get; set; }  // Cantidad de turnos dormido, null si no está dormido
     
-    public bool Paralizado { get; set; }
-    public bool Envenenado { get; set; }
-    public bool Quemado { get; set; }
+    public bool Paralized { get; set; }
+    public bool Poisoned { get; set; }
+    public bool Burned { get; set; }
     
-    public Pokemon(string nombre, int salud, int CapacidadDeAtacar, string estado)
+    public Pokemon(string name, int health, int AttackCapacity, string state)
     {
-        this.Nombre = nombre;
-        this.Hp = salud;
-        this.State = estado;
-        this.CapacidadDeAtacar = 1;
-        this.ListaDeAtaques = new List<Attack>();
+        this.Name = name;
+        this.Hp = health;
+        this.State = state;
+        this.AttackCapacity = 1;
+        this.AttackList = new List<Attack>();
     }
     
 
-    public string EstaVivo()
+    public string IsAlive()
     {
         if (Hp > 0)
         {
@@ -40,41 +40,41 @@ public class  Pokemon
         }
     }
 
-    public void Atacar(Pokemon pokemonOponente, Pokemon pokemonUsuario , Attack ataque)
+    public void Atack(Pokemon opponentPokemon, Pokemon playerPokemon, Attack ataque)
     {
-        if (CapacidadDeAtacar == 1 )
+        if (AttackCapacity == 1 )
         {
-            double danioAtaque = ataque.Daño;
-            pokemonOponente.RecibirDanio(danioAtaque);
+            double atackDamage = ataque.Damage;
+            opponentPokemon.RecibeDamage(atackDamage);
         }
         else
         {
-            Console.WriteLine($"{Nombre} no puede atacar en este turno ya que está {this.State}");
+            Console.WriteLine($"{Name} no puede atacar en este turno ya que está {this.State}");
         }
     }
 
     public void AddAtaque(Attack nuevoAtaque)
     {
-        if (ListaDeAtaques.Count < 4)
+        if (AttackList.Count < 4)
         {
-            ListaDeAtaques.Add(nuevoAtaque);
+            AttackList.Add(nuevoAtaque);
         }
         else
         {
             Console.WriteLine("No se pueden agregar más ataques, el límite es 4");
         }
     }
-    public void RecibirDanio(double danio)
+    public void RecibeDamage(double damage)
     {
-        Hp -= danio;
+        Hp -= damage;
         if (Hp < 0) Hp = 0;
-        Console.WriteLine($"{this.Nombre} recibio {danio} puntos de daño. El HP restante:{Hp}");
+        Console.WriteLine($"{this.Name} recibio {damage} puntos de daño. El HP restante:{Hp}");
     }
     
     public void AddHP(double hp)
     {
         Hp += hp;
-        Console.WriteLine($"{this.Nombre} recuperó {hp} puntos de vida.");
+        Console.WriteLine($"{this.Name} recuperó {hp} puntos de vida.");
     }
 
     public List<Attack> GetAtaques() // falta este método
@@ -82,7 +82,7 @@ public class  Pokemon
         return null;
     }
 
-    public Type.PokemonType GetTipo()
+    public Type.PokemonType GetType()
     {
         return Type;
     }
@@ -93,26 +93,26 @@ public class  Pokemon
     }
 
     // Verificar si tiene un estado ya aplicado
-    public void AplicarEstado(Pokemon objetivo,string estado)
+    public void ApplyState(Pokemon objective,string state)
     {
-        if (objetivo.State == null)
+        if (objective.State == null)
         {
-            objetivo.State = estado;
+            objective.State = state;
         }
         else
         {
-            Console.WriteLine($"{objetivo.Nombre} ya tiene un estado");
+            Console.WriteLine($"{objective.Name} ya tiene un estado");
         }
     }
     
-    // Metodo para que si el jugador le aplica CuraTotal, su estado vuelva a null
-    public void CurarTotalConItem(Pokemon objetivo, Items item, Player jugador)
+    // Metodo para que si el player le aplica CuraTotal, su estado vuelva a null
+    public void TotalCureWithItem(Pokemon objective, Items item, Player player)
     {
-        if (item is CuraTotal && (jugador.GetItem(item) == true))
+        if (item is TotalCure && (player.GetItem(item) == true))
         {
-            objetivo.State = null;
-            jugador.usarItem(item, objetivo);
-            jugador.RemoveItem(item);
+            objective.State = null;
+            player.useItem(item, objective);
+            player.RemoveItem(item);
         }
         else
         {
@@ -121,30 +121,30 @@ public class  Pokemon
     }
 
     // Métodos para actualizar estados en cada turno
-    public void ActualizarEstado()
+    public void StateActualization()
     {
-        if (EstadoDormido.HasValue && EstadoDormido > 0)
+        if (SleepState.HasValue && SleepState > 0)
         {
-            EstadoDormido--;
-            if (EstadoDormido == 0)
+            SleepState--;
+            if (SleepState == 0)
             {
-                EstadoDormido = null;
+                SleepState = null;
             }
         }
 
-        if (Envenenado) 
+        if (Poisoned) 
         {
-            RecibirDanio(Hp * 0.05);  // Pierde 5% del HP total si está envenenado
+            RecibeDamage(Hp * 0.05);  // Pierde 5% del HP total si está envenenado
         }
-        if (Quemado)
+        if (Burned)
         {
-            RecibirDanio(Hp * 0.10);     // Pierde 10% del HP total si está quemado
+            RecibeDamage(Hp * 0.10);     // Pierde 10% del HP total si está quemado
         }
 
-        if (Paralizado)
+        if (Paralized)
         {
             Random random = new Random();
-            int CapacidadDeAtacar = random.Next(0,2); // 0 o 1 definen si puede atacar
+            int AttackCapacity = random.Next(0,2); // 0 o 1 definen si puede atacar
         }
     }
 }

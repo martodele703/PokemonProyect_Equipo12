@@ -2,11 +2,11 @@ namespace Poke.Clases;
 
 public class SpecialAttack : Attack
 {
-    public SpecialAttack(string nombre, int daño, Type.PokemonType tipo)
+    public SpecialAttack(string name, int damage, Type.PokemonType type)
     {
-        this.Nombre = nombre;
-        this.Daño = daño;
-        this.Tipo = tipo;
-        this.EsEspecial = true;
+        this.Name = name;
+        this.Damage = damage;
+        this.Type = type;
+        this.IsSpecial = true;
     }
 }

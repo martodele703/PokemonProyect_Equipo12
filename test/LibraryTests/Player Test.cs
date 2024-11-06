@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-public class Jugador_Test
+public class player_Test
 {
     [SetUp]
     public void Setup()

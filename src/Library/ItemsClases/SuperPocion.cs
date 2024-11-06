@@ -1,14 +1,14 @@
 namespace Poke.Clases;
 
-public class SuperPocion : Items
+public class SuperPotion : Items
 {
-    public SuperPocion()
+    public SuperPotion()
     {
-        Nombre = "Súper Pocion";
+        Name = "Súper Pocion";
     }
 
-    public override void Usar(Pokemon objetivo)
+    public override void Use(Pokemon objective)
     {
-        objetivo.AddHP(70);  // Recupera 70 puntos de HP
+        objective.AddHP(70);  // Recupera 70 puntos de HP
     }
 }
