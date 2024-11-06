@@ -4,16 +4,11 @@ namespace Poke.Clases;
 
 public class  Pokemon
 {
-    private string nombre;
-    private int hp;
-    private Type tipo;
-    private List<string> listaDeAtaques;
     public string Nombre { get; set; }
-    private int capacidadDeAtacar;
-    public string? estado {get; set;}
+    public int CapacidadDeAtacar;
+    public string? State {get; set;}
     public double Hp { get; set; }
-    public Type Tipo { get; set; }
-    public int Ataque { get; set; }
+    public Type.PokemonType Type { get; set; }
     public List<Attack> ListaDeAtaques { get; set; }
     
     // Estados causados por ataques especiales
@@ -23,13 +18,12 @@ public class  Pokemon
     public bool Envenenado { get; set; }
     public bool Quemado { get; set; }
     
-    public Pokemon(string nombre, int salud, int ataque, int capacidadDeAtacar, string estado)
+    public Pokemon(string nombre, int salud, int CapacidadDeAtacar, string estado)
     {
-        this.nombre = nombre;
-        this.hp = salud;
-        this.Ataque = ataque;
-        this.estado = estado;
-        this.capacidadDeAtacar = 1;
+        this.Nombre = nombre;
+        this.Hp = salud;
+        this.State = estado;
+        this.CapacidadDeAtacar = 1;
         this.ListaDeAtaques = new List<Attack>();
     }
     
@@ -48,14 +42,14 @@ public class  Pokemon
 
     public void Atacar(Pokemon pokemonOponente, Pokemon pokemonUsuario , Attack ataque)
     {
-        if (capacidadDeAtacar == 1 )
+        if (CapacidadDeAtacar == 1 )
         {
             double danioAtaque = ataque.Daño;
             pokemonOponente.RecibirDanio(danioAtaque);
         }
         else
         {
-            Console.WriteLine($"{Nombre} no puede atacar en este turno ya que está {this.estado}");
+            Console.WriteLine($"{Nombre} no puede atacar en este turno ya que está {this.State}");
         }
     }
 
@@ -88,22 +82,22 @@ public class  Pokemon
         return null;
     }
 
-    public Type GetTipo()
+    public Type.PokemonType GetTipo()
     {
-        return tipo;
+        return Type;
     }
 
     public double GetHp()
     {
-        return hp;
+        return Hp;
     }
 
     // Verificar si tiene un estado ya aplicado
     public void AplicarEstado(Pokemon objetivo,string estado)
     {
-        if (objetivo.estado == null)
+        if (objetivo.State == null)
         {
-            objetivo.estado = estado;
+            objetivo.State = estado;
         }
         else
         {
@@ -116,7 +110,7 @@ public class  Pokemon
     {
         if (item is CuraTotal && (jugador.GetItem(item) == true))
         {
-            objetivo.estado = null;
+            objetivo.State = null;
             jugador.usarItem(item, objetivo);
             jugador.RemoveItem(item);
         }
@@ -150,7 +144,7 @@ public class  Pokemon
         if (Paralizado)
         {
             Random random = new Random();
-            int capacidadDeAtacar = random.Next(0,2); // 0 o 1 definen si puede atacar
+            int CapacidadDeAtacar = random.Next(0,2); // 0 o 1 definen si puede atacar
         }
     }
 }

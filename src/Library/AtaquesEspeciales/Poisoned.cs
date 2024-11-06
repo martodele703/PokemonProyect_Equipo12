@@ -1,11 +1,11 @@
 namespace Poke.Clases;
 
-public class Envenenado
+public class Poisoned
 {
     public void Envenenar(Pokemon objetivo)
     {
-        objetivo.estado = "Envenenado";
-        if (objetivo.estado == "Envenenado")
+        objetivo.State = "Poisoned";
+        if (objetivo.State == "Poisoned")
         {
             objetivo.Hp *= 0.95;
         }
