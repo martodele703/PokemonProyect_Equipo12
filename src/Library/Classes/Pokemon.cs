@@ -5,24 +5,25 @@ namespace Poke.Clases;
 public class  Pokemon
 {
     public string Name { get; set; }
-    public int AttackCapacity { get; set; }
+    public double AttackCapacity { get; set; }
     public string? State { get; set; }
     public double Hp { get; set; }
     public Type.PokemonType Type { get; set; }
     public List<Attack> AttackList { get; set; }
         
-    public int? SleepState { get; set; }  // Cantidad de turnos dormido, null si no está dormido
+    public double? SleepState { get; set; }  // Cantidad de turnos dormido, null si no está dormido
     public bool Paralized { get; set; }
     public bool Poisoned { get; set; }
     public bool Burned { get; set; }
     
-    public Pokemon(string name, int health, int AttackCapacity, string state)
+    public Pokemon(string name, double health, double AttackCapacity, string state, Type.PokemonType type)
     {
         this.Name = name;
         this.Hp = health;
         this.State = state;
         this.AttackCapacity = 1;
         this.AttackList = new List<Attack>();
+        this.Type = type;
     }
     
 
@@ -38,12 +39,12 @@ public class  Pokemon
         }
     }
 
-    public void Atack(Pokemon opponentPokemon, Pokemon playerPokemon, Attack ataque)
+    public void Attack(Pokemon opponentPokemon, Pokemon playerPokemon, Attack attack)
     {
         if (AttackCapacity == 1 )
         {
-            double atackDamage = ataque.Damage;
-            opponentPokemon.RecibeDamage(atackDamage);
+            double attackDamage = attack.Damage;
+            opponentPokemon.RecibeDamage(attackDamage);
         }
         else
         {
@@ -51,11 +52,11 @@ public class  Pokemon
         }
     }
 
-    public void AddAtack(Attack nuevoAtaque)
+    public void AddAttack(Attack nuevoAttack)
     {
         if (AttackList.Count < 4)
         {
-            AttackList.Add(nuevoAtaque);
+            AttackList.Add(nuevoAttack);
         }
         else
         {
@@ -65,7 +66,10 @@ public class  Pokemon
     public void RecibeDamage(double damage)
     {
         Hp -= damage;
-        if (Hp < 0) Hp = 0;
+        if (Hp < 0)
+        {
+            Hp = 0;
+        }
         Console.WriteLine($"{this.Name} recibio {damage} puntos de daño. El HP restante:{Hp}");
     }
     
@@ -75,7 +79,7 @@ public class  Pokemon
         Console.WriteLine($"{this.Name} recuperó {hp} puntos de vida.");
     }
 
-    public List<Attack> GetAtacks() 
+    public List<Attack> GetAttacks() 
     {
         return AttackList;
     }
@@ -104,7 +108,7 @@ public class  Pokemon
     }
     
     // Metodo para que si el player le aplica CuraTotal, su estado vuelva a null
-    public void TotalCureWithItem(Pokemon objective, Items item, Player player)
+    public void TotalCureWithItem(Pokemon objective, Items item, Trainer player)
     {
         if (item is TotalCure && (player.GetItem(item) == true))
         {
@@ -142,7 +146,7 @@ public class  Pokemon
         if (Paralized)
         {
             Random random = new Random();
-            int AttackCapacity = random.Next(0,2); // 0 o 1 definen si puede atacar
+            double AttackCapacity = random.Next(0,2); // 0 o 1 definen si puede atacar
         }
     }
 }

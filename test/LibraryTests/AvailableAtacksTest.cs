@@ -3,7 +3,7 @@
 namespace LibraryTests;
 
 [TestFixture]
-public class AvailableAtacksTest
+public class AvailableAttacksTest
 {
     /* Como jugador, quiero ver los ataques disponibles de mis Pokémons para poder elegir cuál usar en cada turno.
         Criterios de aceptación:

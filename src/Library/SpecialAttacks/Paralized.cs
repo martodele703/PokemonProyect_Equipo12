@@ -1,7 +1,12 @@
 namespace Poke.Clases;
 
-public class Paralized
+public class Paralized : Attack
 {
+    
+    public Paralized(string name, double damage, Type.PokemonType attackType, bool isSpecial) : base(name, damage, attackType, isSpecial)
+    {
+       
+    }  
     public void Paralize(Pokemon objective)
     {
         objective.State = "Paralizado";
@@ -9,7 +14,7 @@ public class Paralized
             
         {
             Random random = new Random();
-            int atackCapacity = random.Next(0,2); // 0 o 1 definen si puede atacar
+            double attackCapacity = random.Next(0,2); // 0 o 1 definen si puede atacar
         }
     }
 }

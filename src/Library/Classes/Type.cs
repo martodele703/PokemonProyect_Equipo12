@@ -28,7 +28,7 @@ namespace Poke.Clases
             Disadvantage = -1
         }
 
-        private static readonly Dictionary<(PokemonType, PokemonType), TypeAdvantage> typeAdvantages = new()
+        public static readonly Dictionary<(PokemonType, PokemonType), TypeAdvantage> typeAdvantages = new()
         {
             {(PokemonType.Water, PokemonType.Fire), TypeAdvantage.Advantage},
             {(PokemonType.Water, PokemonType.Rock), TypeAdvantage.Advantage},
