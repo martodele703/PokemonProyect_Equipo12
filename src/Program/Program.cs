@@ -1,7 +1,7 @@
-﻿public class program
+﻿using Poke.Clases;
+ class program
 {
-    static void Main(string [] args)
+    static void Main (string [] args)
     {
-        
     }
 }

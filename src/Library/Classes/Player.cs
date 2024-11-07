@@ -1,6 +1,6 @@
 namespace Poke.Clases;
 
-public class Player
+public class Trainer
 {
     // Atributos privados
     public List<Pokemon> Pokemons;
@@ -9,7 +9,7 @@ public class Player
     private string name { get; set; }
 
     // Constructor
-    public Player(string name, Pokemon ActualPokemon)
+    public Trainer(string name, Pokemon ActualPokemon)
     {
         Pokemons = new List<Pokemon>();
         this.ActualPokemon = ActualPokemon;
