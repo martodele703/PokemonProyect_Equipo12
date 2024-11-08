@@ -1,11 +1,22 @@
 namespace Poke.Clases;
 
+/// <summary>
+/// Clase que gestiona las posibles jugadas de un entrenador durante un turno.
+/// </summary>
 public class Plays
 {
+    /// <summary>
+    /// Permite al entrenador elegir entre atacar, cambiar de Pokémon o usar un ítem.
+    /// </summary>
+    /// <param name="player1">El entrenador que realiza la jugada.</param>
+    /// <param name="player2">El entrenador oponente.</param>
+    /// <param name="item">El ítem que el jugador puede usar.</param>
+    /// <param name="objective">El Pokémon objetivo del ítem.</param>
     public void PossiblePlays(Trainer player1, Trainer player2, Items item, Pokemon objective)
     {
         Console.WriteLine("1. Atacar \n 2. Cambiar de Pokemon \n 3. Usar Item");
         string playElection = Console.ReadLine();
+
         if (playElection == "1")
         {
             // Mostrar los ataques disponibles
@@ -15,7 +26,7 @@ public class Plays
                 Console.WriteLine($"{i + 1}. {player1.ActualPokemon.AttackList[i].Name}");
             }
 
-            // Leer la elección del usuario
+            // Leer la elección del usuario y validar la opción
             if (int.TryParse(Console.ReadLine(), out int selectedAttackIndex) &&
                 selectedAttackIndex > 0 &&
                 selectedAttackIndex <= player1.ActualPokemon.AttackList.Count)
@@ -26,25 +37,28 @@ public class Plays
                 // Realizar el ataque con el ataque seleccionado
                 player1.ActualPokemon.Attack(player2.ActualPokemon, player1.ActualPokemon, selectedAttack);
             }
-            else if (playElection == "2")
+        }
+        else if (playElection == "2")
+        {
+            // Cambiar al Pokémon seleccionado por el jugador
+            Console.WriteLine("Selecciona un Pokemon:");
+            for (int i = 0; i < player1.Pokemons.Count; i++)
             {
-                Console.WriteLine("Selecciona un Pokemon:");
-                for (int i = 0; i < player1.Pokemons.Count; i++)
-                {
-                    Console.WriteLine($"{i + 1}. {player1.Pokemons[i].Name}");
-                }
-                string newPokemon = Console.ReadLine();
-                Pokemon selectedPokemon = player1.Pokemons[int.Parse(newPokemon) - 1];
-                player1.ActualPokemon = selectedPokemon;
+                Console.WriteLine($"{i + 1}. {player1.Pokemons[i].Name}");
             }
-            else if (playElection == "3")
-            {
-                item.Use(objective);
-            }
-            else
-            {
-                Console.WriteLine("Eleccion invalida");
-            }
+            string newPokemon = Console.ReadLine();
+            Pokemon selectedPokemon = player1.Pokemons[int.Parse(newPokemon) - 1];
+            player1.ActualPokemon = selectedPokemon;
+        }
+        else if (playElection == "3")
+        {
+            // Usar un ítem en el Pokémon objetivo
+            item.Use(objective);
+        }
+        else
+        {
+            // Mensaje de opción inválida
+            Console.WriteLine("Eleccion invalida");
         }
     }
 }

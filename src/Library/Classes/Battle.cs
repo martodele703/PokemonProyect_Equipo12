@@ -1,18 +1,46 @@
-using Ucu.Poo.DiscordBot.Domain;
-
 namespace Poke.Clases;
 
+/// <summary>
+/// Representa una batalla entre dos entrenadores Pokémon, gestionando turnos, jugadas, y verificando el final del juego.
+/// </summary>
 public class Battle
 {
+    /// <summary>
+    /// Determina el turno inicial de forma aleatoria entre los dos jugadores.
+    /// </summary>
     public double AleatoryTurn { get; set; }
+    
+    /// <summary>
+    /// Instancia para gestionar las jugadas posibles en cada turno.
+    /// </summary>
     public Plays plays;
+    
+    /// <summary>
+    /// Representa el turno actual en la batalla, alternando entre los jugadores.
+    /// </summary>
     public double Turn;
-    public Trainer PlayerPokemon { get; set; }
-    public Trainer OpponentPokemon { get; set; }
+    
+    /// <summary>
+    /// Entrenador del jugador principal.
+    /// </summary>
+    public Pokemon PlayerPokemon { get; set; }
+    
+    /// <summary>
+    /// Entrenador del oponente.
+    /// </summary>
+    public Pokemon OpponentPokemon { get; set; }
+    
+    /// <summary>
+    /// Contador del turno actual.
+    /// </summary>
     public double ActualTurn { get; set; }
 
-    // Constructor
-    public Battle(Trainer playerPokemon, Trainer opponentPokemon)
+    /// <summary>
+    /// Inicializa una nueva instancia de la clase <see cref="Battle"/>.
+    /// </summary>
+    /// <param name="playerPokemon">El entrenador principal del jugador.</param>
+    /// <param name="opponentPokemon">El entrenador oponente.</param>
+    public Battle(Pokemon playerPokemon, Pokemon opponentPokemon)
     {
         PlayerPokemon = playerPokemon;
         OpponentPokemon = opponentPokemon;
@@ -21,7 +49,7 @@ public class Battle
     }
 
     /// <summary>
-    /// Inicializa el turno aleatorio entre dos jugadores.
+    /// Determina de forma aleatoria cuál jugador comienza el primer turno.
     /// </summary>
     private void InitialTurn()
     {
@@ -30,8 +58,10 @@ public class Battle
     }
 
     /// <summary>
-    /// Juega un turno entre dos jugadores y alterna el turno.
+    /// Ejecuta un turno de la batalla, permitiendo a un jugador realizar una jugada y luego alterna el turno al otro jugador.
     /// </summary>
+    /// <param name="player1">El primer entrenador.</param>
+    /// <param name="player2">El segundo entrenador.</param>
     private void PlayTurn(Trainer player1, Trainer player2)
     {
         if (Turn == 1)
@@ -50,8 +80,11 @@ public class Battle
     }
 
     /// <summary>
-    /// Verifica si el juego ha terminado, devolviendo true si uno de los jugadores ha ganado.
+    /// Verifica si la batalla ha terminado, es decir, si uno de los jugadores ha ganado.
     /// </summary>
+    /// <param name="player1">El primer entrenador.</param>
+    /// <param name="player2">El segundo entrenador.</param>
+    /// <returns>True si uno de los jugadores ha ganado; de lo contrario, False.</returns>
     private bool GameFinished(Trainer player1, Trainer player2)
     {
         player1.PokemonLife();
@@ -70,8 +103,10 @@ public class Battle
     }
 
     /// <summary>
-    /// Información del turno actual y estado de los Pokémon de cada jugador.
+    /// Muestra el estado actual de los Pokémon de ambos jugadores, incluyendo el turno actual.
     /// </summary>
+    /// <param name="player1">El primer entrenador.</param>
+    /// <param name="player2">El segundo entrenador.</param>
     private void InfoTurn(Trainer player1, Trainer player2)
     {
         Console.WriteLine("Turno: " + ActualTurn);
@@ -81,8 +116,10 @@ public class Battle
     }
 
     /// <summary>
-    /// Ejecuta la batalla completa entre dos jugadores hasta que uno gane.
+    /// Ejecuta la batalla completa entre dos jugadores, alternando turnos hasta que uno de los jugadores gane.
     /// </summary>
+    /// <param name="player1">El primer entrenador.</param>
+    /// <param name="player2">El segundo entrenador.</param>
     public void Game(Trainer player1, Trainer player2)
     {
         InitialTurn();
