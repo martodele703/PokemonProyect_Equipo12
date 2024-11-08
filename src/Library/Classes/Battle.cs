@@ -38,8 +38,8 @@ public class Battle
     /// <summary>
     /// Inicializa una nueva instancia de la clase <see cref="Battle"/>.
     /// </summary>
-    /// <param name="playerPokemon">El entrenador principal del jugador.</param>
-    /// <param name="opponentPokemon">El entrenador oponente.</param>
+    /// <param name="playerPokemon">El pokemon del jugador.</param>
+    /// <param name="opponentPokemon">El pokemon oponente.</param>
     public Battle(Pokemon playerPokemon, Pokemon opponentPokemon)
     {
         PlayerPokemon = playerPokemon;
@@ -85,7 +85,7 @@ public class Battle
     /// <param name="player1">El primer entrenador.</param>
     /// <param name="player2">El segundo entrenador.</param>
     /// <returns>True si uno de los jugadores ha ganado; de lo contrario, False.</returns>
-    private bool GameFinished(Trainer player1, Trainer player2)
+    private bool BattleFinished(Trainer player1, Trainer player2)
     {
         player1.PokemonLife();
         player2.PokemonLife();
@@ -116,16 +116,16 @@ public class Battle
     }
 
     /// <summary>
-    /// Ejecuta la batalla completa entre dos jugadores, alternando turnos hasta que uno de los jugadores gane.
+    /// Ejecuta la batalla completa entre dos pokemon, alternando turnos hasta que uno de los jugadores gane.
     /// </summary>
     /// <param name="player1">El primer entrenador.</param>
     /// <param name="player2">El segundo entrenador.</param>
-    public void Game(Trainer player1, Trainer player2)
+    public void CompleteBattle(Trainer player1, Trainer player2)
     {
         InitialTurn();
         Console.WriteLine($"El jugador {Turn} comienza la batalla.");
 
-        while (!GameFinished(player1, player2))
+        while (!BattleFinished(player1, player2))
         {
             InfoTurn(player1, player2); // Muestra el estado actual de los Pokémon
             PlayTurn(player1, player2); // Ejecuta un turno alternando entre los jugadores
