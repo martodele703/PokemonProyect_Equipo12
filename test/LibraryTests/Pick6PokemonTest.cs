@@ -1,5 +1,9 @@
 ﻿using NUnit.Framework;
 using Poke.Clases;
+using Type = Poke.Clases.Type;
+using System.IO;
+using System.Collections.Generic;
+
 namespace LibraryTests
 {
     [TestFixture]
@@ -11,10 +15,9 @@ namespace LibraryTests
         [SetUp]
         public void SetUp()
         {
-            // Crear un catálogo de Pokémon de ejemplo
             catalogoPokemon = new List<Pokemon>
             {
-                new Pokemon("Pikachu", 100, 10, "1", Type.PokemonType.Electric),
+                new Pokemon("Pikachu", 100, 10, "1", Type.PokemonType.Bug),
                 new Pokemon("Charmander", 100, 10, "2", Type.PokemonType.Fire),
                 new Pokemon("Bulbasaur", 100, 10, "3", Type.PokemonType.Plant),
                 new Pokemon("Squirtle", 100, 10, "4", Type.PokemonType.Water),
@@ -23,8 +26,7 @@ namespace LibraryTests
                 new Pokemon("Jigglypuff", 100, 10, "7", Type.PokemonType.Flying)
             };
 
-            // Crear un jugador con un nombre
-            jugador = new Trainer("Jugador 1", catalogoPokemon[0]); // empieza con Pikachu
+            jugador = new Trainer("Jugador 1", catalogoPokemon[0]);
         }
 
         [Test]
@@ -41,14 +43,16 @@ namespace LibraryTests
             {
                 jugador.Pokemons.Add(catalogoPokemon[i]);
             }
-            Assert.AreEqual(6, jugador.Pokemons.Count, "El jugador debería tener 6 Pokémon.");
+
+            Assert.That(jugador.Pokemons.Count, Is.EqualTo(6), "El jugador debería tener 6 Pokémon.");
             for (int i = 0; i < 6; i++)
             {
-                Assert.AreEqual(catalogoPokemon[i], jugador.Pokemons[i], $"El Pokémon {i + 1} no coincide.");
+                Assert.That(jugador.Pokemons[i], Is.EqualTo(catalogoPokemon[i]), $"El Pokémon {i + 1} no coincide.");
             }
+
             foreach (var pokemon in jugador.Pokemons)
             {
-                Assert.IsTrue(consoleOutput.ToString().Contains(pokemon.Name), $"El nombre de {pokemon.Name} no se mostró en consola.");
+                Assert.That(consoleOutput.ToString(), Does.Contain(pokemon.Name), $"El nombre de {pokemon.Name} no se mostró en consola.");
             }
         }
     }

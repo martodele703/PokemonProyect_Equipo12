@@ -23,11 +23,11 @@ namespace LibraryTests
         public void Test_PokemonHpUpdatesAfterAttack()
         {
             // Asegurarse de que el HP es correcto
-            Assert.AreEqual(80, pokemon2.Hp);
+            Assert.That(pokemon2.Hp, Is.EqualTo(80));
 
             // Pikachu ataca a Bulbasaur
             pokemon1.Attack(pokemon2, pokemon1, attack);
-            Assert.AreEqual(55, pokemon2.Hp, "Los puntos de vida de Bulbasaur no se actualizaron correctamente después del ataque.");
+            Assert.That(pokemon2.Hp, Is.EqualTo(55), "Los puntos de vida de Bulbasaur no se actualizaron correctamente después del ataque.");
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace LibraryTests
         {
             // Realizar un ataque y reducir los HP de Pikachu
             pokemon1.RecibeDamage(30);
-            Assert.AreEqual("El Pokemon está vivo", pokemon1.IsAlive());
+            Assert.That(pokemon1.IsAlive(), Is.EqualTo("El Pokemon está vivo"));
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace LibraryTests
         {
             // Reducir los puntos de vida de Pikachu hasta que esté muerto
             pokemon1.RecibeDamage(100);
-            Assert.AreEqual("El Pokemon está muerto", pokemon1.IsAlive());
+            Assert.That(pokemon1.IsAlive(), Is.EqualTo("El Pokemon está muerto"));
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace LibraryTests
         {
             // Reducir los puntos de vida de Pikachu a un valor negativo
             pokemon1.RecibeDamage(200);
-            Assert.AreEqual(0, pokemon1.Hp, "Los puntos de vida de Pikachu no deberían ser negativos.");
+            Assert.That(pokemon1.Hp, Is.EqualTo(0), "Los puntos de vida de Pikachu no deberían ser negativos.");
         }
     }
 }
