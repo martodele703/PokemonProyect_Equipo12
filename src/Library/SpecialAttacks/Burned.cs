@@ -1,11 +1,7 @@
 namespace Poke.Clases;
 
-public class Burned : Attack
+public class Burned
 {
-    public Burned(string name, double damage, Type.PokemonType attackType, bool isSpecial) : base(name, damage, attackType, isSpecial)
-    {
-       
-    }  
     public void Burn(Pokemon objective)
     {
         objective.State = "Burned";

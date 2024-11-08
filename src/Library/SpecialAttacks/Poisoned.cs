@@ -1,12 +1,7 @@
 namespace Poke.Clases;
 
-public class Poisoned : Attack
+public class Poisoned
 {
-    
-    public Poisoned(string name, double damage, Type.PokemonType attackType, bool isSpecial) : base(name, damage, attackType, isSpecial)
-    {
-       
-    }  
     public void Envenenar(Pokemon objective)
     {
         objective.State = "Poisoned";
