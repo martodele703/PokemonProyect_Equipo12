@@ -1,7 +1,13 @@
 namespace Poke.Clases
 {
+    /// <summary>
+    /// Clase estática que define los tipos de Pokémon y sus ventajas/desventajas de tipo.
+    /// </summary>
     public static class Type
     {
+        /// <summary>
+        /// Enumera los tipos de Pokémon disponibles.
+        /// </summary>
         public enum PokemonType
         {
             Water,
@@ -21,14 +27,31 @@ namespace Poke.Clases
             Flying
         }
 
+        /// <summary>
+        /// Define el tipo de ventaja en una batalla.
+        /// </summary>
         public enum TypeAdvantage
         {
+            /// <summary>
+            /// Ventaja de tipo.
+            /// </summary>
             Advantage = 1,
+
+            /// <summary>
+            /// Tipo neutral.
+            /// </summary>
             Neutral = 0,
+
+            /// <summary>
+            /// Desventaja de tipo.
+            /// </summary>
             Disadvantage = -1
         }
 
-        private static readonly Dictionary<(PokemonType, PokemonType), TypeAdvantage> typeAdvantages = new()
+        /// <summary>
+        /// Diccionario que contiene las combinaciones de tipos y sus respectivas ventajas.
+        /// </summary>
+        public static readonly Dictionary<(PokemonType, PokemonType), TypeAdvantage> typeAdvantages = new()
         {
             {(PokemonType.Water, PokemonType.Fire), TypeAdvantage.Advantage},
             {(PokemonType.Water, PokemonType.Rock), TypeAdvantage.Advantage},
@@ -68,6 +91,12 @@ namespace Poke.Clases
             {(PokemonType.Flying, PokemonType.Bug), TypeAdvantage.Advantage}
         };
 
+        /// <summary>
+        /// Obtiene la ventaja de tipo entre dos Pokémon.
+        /// </summary>
+        /// <param name="type1">Tipo del Pokémon atacante.</param>
+        /// <param name="type2">Tipo del Pokémon defensor.</param>
+        /// <returns>La ventaja de tipo entre los dos Pokémon (ventaja, neutral o desventaja).</returns>
         public static TypeAdvantage GetTypeAdvantage(PokemonType type1, PokemonType type2)
         {
             if (type1 == type2)
