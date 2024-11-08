@@ -123,7 +123,7 @@ public class Battle
     public void CompleteBattle(Trainer player1, Trainer player2)
     {
         InitialTurn();
-        Console.WriteLine($"El jugador {Turn} comienza la batalla.");
+        Console.WriteLine($"Comienza la batalla!");
 
         while (!BattleFinished(player1, player2))
         {
