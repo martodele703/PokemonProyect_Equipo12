@@ -28,10 +28,11 @@ namespace LibraryTests
         [Test]
         public void CambioDePokemon_PierdeTurno_Test()
         {
+            batalla.PlayTurn(jugador, oponente);
             double turnoAntesDelCambio = batalla.Turn;
             jugador.ActualPokemon = pokemon2;
-            batalla.CompleteBattle(jugador, oponente);
-            Assert.That(batalla.Turn, Is.EqualTo(turnoAntesDelCambio), "El cambio de Pokémon no debe hacer que el turno cambie.");
+            batalla.PlayTurn(jugador, oponente);
+            Assert.That(batalla.Turn, Is.Not.EqualTo(turnoAntesDelCambio), "El cambio de Pokémon debería permitir que el otro jugador tome el turno.");
         }
     }
 }

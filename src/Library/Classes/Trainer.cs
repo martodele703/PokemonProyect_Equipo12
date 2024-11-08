@@ -102,6 +102,15 @@ public class Trainer
     {
         Items.Remove(item);
     }
+    
+    /// <summary>
+    /// Agrega un item a la lista de items del entrenador.
+    /// </summary>
+    /// <para name="item">El item a agregar.</para>
+    public void AddItem(Items item)
+    {
+        Items.Add(item);
+    }
 
     /// <summary>
     /// Usa un item específico en un pokemon objetivo.

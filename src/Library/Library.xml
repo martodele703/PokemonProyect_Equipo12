@@ -89,8 +89,8 @@
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Poke.Clases.Battle"/>.
             </summary>
-            <param name="playerPokemon">El entrenador principal del jugador.</param>
-            <param name="opponentPokemon">El entrenador oponente.</param>
+            <param name="playerPokemon">El pokemon del jugador.</param>
+            <param name="opponentPokemon">El pokemon oponente.</param>
         </member>
         <member name="M:Poke.Clases.Battle.InitialTurn">
             <summary>
@@ -104,7 +104,7 @@
             <param name="player1">El primer entrenador.</param>
             <param name="player2">El segundo entrenador.</param>
         </member>
-        <member name="M:Poke.Clases.Battle.GameFinished(Poke.Clases.Trainer,Poke.Clases.Trainer)">
+        <member name="M:Poke.Clases.Battle.BattleFinished(Poke.Clases.Trainer,Poke.Clases.Trainer)">
             <summary>
             Verifica si la batalla ha terminado, es decir, si uno de los jugadores ha ganado.
             </summary>
@@ -119,9 +119,9 @@
             <param name="player1">El primer entrenador.</param>
             <param name="player2">El segundo entrenador.</param>
         </member>
-        <member name="M:Poke.Clases.Battle.Game(Poke.Clases.Trainer,Poke.Clases.Trainer)">
+        <member name="M:Poke.Clases.Battle.CompleteBattle(Poke.Clases.Trainer,Poke.Clases.Trainer)">
             <summary>
-            Ejecuta la batalla completa entre dos jugadores, alternando turnos hasta que uno de los jugadores gane.
+            Ejecuta la batalla completa entre dos pokemon, alternando turnos hasta que uno de los jugadores gane.
             </summary>
             <param name="player1">El primer entrenador.</param>
             <param name="player2">El segundo entrenador.</param>

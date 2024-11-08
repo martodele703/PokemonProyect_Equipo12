@@ -51,7 +51,7 @@ public class Battle
     /// <summary>
     /// Determina de forma aleatoria cuál jugador comienza el primer turno.
     /// </summary>
-    private void InitialTurn()
+    public void InitialTurn()
     {
         Random random = new Random();
         Turn = random.Next(1, 3); // 1 para el primer jugador, 2 para el segundo jugador
@@ -62,7 +62,7 @@ public class Battle
     /// </summary>
     /// <param name="player1">El primer entrenador.</param>
     /// <param name="player2">El segundo entrenador.</param>
-    private void PlayTurn(Trainer player1, Trainer player2)
+    public void PlayTurn(Trainer player1, Trainer player2)
     {
         if (Turn == 1)
         {
@@ -85,7 +85,7 @@ public class Battle
     /// <param name="player1">El primer entrenador.</param>
     /// <param name="player2">El segundo entrenador.</param>
     /// <returns>True si uno de los jugadores ha ganado; de lo contrario, False.</returns>
-    private bool BattleFinished(Trainer player1, Trainer player2)
+    public bool BattleFinished(Trainer player1, Trainer player2)
     {
         player1.PokemonLife();
         player2.PokemonLife();
