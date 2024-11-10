@@ -2,72 +2,45 @@
 
 public class WaitList
 {
-    private List<string> waitList;
+    private List<Trainer> waitList;
 
     public WaitList()
     {
-        waitList = new List<string>();
+        waitList = new List<Trainer>();
     }
 
-    /// <summary>
-    /// Agrega una persona a la lista de espera.
-    /// </summary>
-    /// <param name="name">El nombre de la persona.</param>
-    public void AddToWaitList(string name)
+    public void AddToWaitList(Trainer trainer)
     {
-        if (!string.IsNullOrWhiteSpace(name))
+        if (trainer != null)
         {
-            waitList.Add(name);
-            Console.WriteLine($"{name} ha sido añadido a la lista de espera.");
+            waitList.Add(trainer);
+            Console.WriteLine($"{trainer.name} ha sido añadido a la lista de espera.");
+        }
+    }
+
+    public List<Trainer> CheckIn()
+    {
+        var playersToPlay = new List<Trainer>();
+        
+        if (waitList.Count >= 2)
+        {
+            playersToPlay.Add(waitList[0]);
+            playersToPlay.Add(waitList[1]);
+
+            Console.WriteLine($"{playersToPlay[0].name} y {playersToPlay[1].name} están listos para jugar.");
+
+            waitList.RemoveRange(0, 2); // Elimina los dos primeros elementos de la lista de espera
         }
         else
         {
-            Console.WriteLine("El nombre no puede estar vacío.");
+            Console.WriteLine("No hay suficientes personas en la lista de espera para comenzar el juego.");
         }
+
+        return playersToPlay;
     }
 
-    /// <summary>
-    /// Remueve la primera persona de la lista de espera.
-    /// </summary>
-    public void RemoveFromWaitList()
+    public bool HasPlayers()
     {
-        if (waitList.Count > 0)
-        {
-            string name = waitList[0];
-            waitList.RemoveAt(0);
-            Console.WriteLine($"{name} ha sido removido de la lista de espera.");
-        }
-        else
-        {
-            Console.WriteLine("La lista de espera está vacía.");
-        }
-    }
-
-    /// <summary>
-    /// Muestra el estado actual de la lista de espera.
-    /// </summary>
-    public void ShowWaitList()
-    {
-        if (waitList.Count > 0)
-        {
-            Console.WriteLine("Lista de espera actual:");
-            for (int i = 0; i < waitList.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {waitList[i]}");
-            }
-        }
-        else
-        {
-            Console.WriteLine("La lista de espera está vacía.");
-        }
-    }
-
-    /// <summary>
-    /// Devuelve el número de personas en la lista de espera.
-    /// </summary>
-    /// <returns>La cantidad de personas en la lista de espera.</returns>
-    public int Count()
-    {
-        return waitList.Count;
+        return waitList.Count >= 2;
     }
 }

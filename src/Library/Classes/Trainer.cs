@@ -9,7 +9,7 @@ public class Trainer
     /// Lista de pokemones que posee el entrenador.
     /// </summary>
     public List<Pokemon> Pokemons;
-
+    
     /// <summary>
     /// El pokemon actualmente activo del entrenador.
     /// </summary>
@@ -23,7 +23,7 @@ public class Trainer
     /// <summary>
     /// Nombre del entrenador.
     /// </summary>
-    private string name { get; set; }
+    public string name { get; set; }
 
     /// <summary>
     /// Inicializa una nueva instancia de la clase <see cref="Trainer"/>.
