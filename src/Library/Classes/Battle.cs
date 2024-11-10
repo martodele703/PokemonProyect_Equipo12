@@ -6,11 +6,6 @@
     public class Battle
     {
         /// <summary>
-        /// Determina el turno inicial de forma aleatoria entre los dos jugadores.
-        /// </summary>
-        public double AleatoryTurn { get; set; }
-
-        /// <summary>
         /// Instancia para gestionar las jugadas posibles en cada turno.
         /// </summary>
         public Plays plays;
@@ -156,5 +151,5 @@
             {
                 Console.WriteLine("No hay suficientes entrenadores en la lista de espera para iniciar una batalla.");
             }
-        }
+        } 
     }
