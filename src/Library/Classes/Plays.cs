@@ -58,7 +58,7 @@ public class Plays
         else
         {
             // Mensaje de opción inválida
-            Console.WriteLine("Eleccion invalida");
+            Console.WriteLine("Eleccion invalida. Turno perdido.");
         }
     }
 }

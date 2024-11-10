@@ -45,7 +45,6 @@ public class Battle
         PlayerPokemon = playerPokemon;
         OpponentPokemon = opponentPokemon;
         plays = new Plays();
-        ActualTurn = 1;
     }
 
     /// <summary>
@@ -55,6 +54,7 @@ public class Battle
     {
         Random random = new Random();
         Turn = random.Next(1, 3); // 1 para el primer jugador, 2 para el segundo jugador
+        ActualTurn = Turn;
     }
 
     /// <summary>
@@ -87,8 +87,6 @@ public class Battle
     /// <returns>True si uno de los jugadores ha ganado; de lo contrario, False.</returns>
     public bool BattleFinished(Trainer player1, Trainer player2)
     {
-        player1.PokemonLife();
-        player2.PokemonLife();
         if (player1.PokemonLife() == 0)
         {
             Console.WriteLine("El jugador 2 ha ganado");

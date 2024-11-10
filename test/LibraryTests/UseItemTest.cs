@@ -35,6 +35,7 @@ public class UseItemTest
         if (batalla.Turn == 1) // Si es el turno del jugador 1
         {
             // El jugador usa un ítem
+            batalla.PlayTurn(jugador, oponente);
             pocion.Use(oponente.ActualPokemon);
             Assert.That(batalla.Turn, Is.EqualTo(2), "El turno debería pasar al oponente después de usar el ítem.");
         }

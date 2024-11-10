@@ -317,6 +317,12 @@
             </summary>
             <param name="item">El item a eliminar.</param>
         </member>
+        <member name="M:Poke.Clases.Trainer.AddItem(Poke.Clases.Items)">
+            <summary>
+            Agrega un item a la lista de items del entrenador.
+            </summary>
+            <para name="item">El item a agregar.</para>
+        </member>
         <member name="M:Poke.Clases.Trainer.useItem(Poke.Clases.Items,Poke.Clases.Pokemon)">
             <summary>
             Usa un item específico en un pokemon objetivo.

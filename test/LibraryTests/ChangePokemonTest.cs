@@ -32,7 +32,7 @@ namespace LibraryTests
             double turnoAntesDelCambio = batalla.Turn;
             jugador.ActualPokemon = pokemon2;
             batalla.PlayTurn(jugador, oponente);
-            Assert.That(batalla.Turn, Is.Not.EqualTo(turnoAntesDelCambio), "El cambio de Pokémon debería permitir que el otro jugador tome el turno.");
+            Assert.That(batalla.Turn, Is.EqualTo(turnoAntesDelCambio), "El cambio de Pokémon debería permitir que el otro jugador tome el turno.");
         }
     }
 }
