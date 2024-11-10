@@ -39,7 +39,7 @@ public class WinBattleTest
             
             // Verificar el mensaje de ganador
             string output = consoleOutput.ToString();
-            Assert.That(output != ("El jugador 1 ha ganado"), "El mensaje final debería indicar que el jugador 1 ha ganado la batalla.");
+            Assert.That(output == ("El jugador 1 ha ganado"), "El mensaje final debería indicar que el jugador 1 ha ganado la batalla.");
         }
     }
 }

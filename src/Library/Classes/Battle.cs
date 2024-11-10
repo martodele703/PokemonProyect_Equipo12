@@ -45,6 +45,7 @@ public class Battle
         PlayerPokemon = playerPokemon;
         OpponentPokemon = opponentPokemon;
         plays = new Plays();
+        ActualTurn = 1;
     }
 
     /// <summary>
@@ -54,7 +55,6 @@ public class Battle
     {
         Random random = new Random();
         Turn = random.Next(1, 3); // 1 para el primer jugador, 2 para el segundo jugador
-        ActualTurn = Turn;
     }
 
     /// <summary>

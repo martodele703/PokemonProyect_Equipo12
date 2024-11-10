@@ -37,10 +37,10 @@ public class AvailableAttacksTest
     public void AtaqueEspecial_RestriccionDeTurnos_Test()
     {
         // Simulamos el turno 1
-        battle.CompleteBattle(jugador, new Trainer("Jugador2", new Pokemon("Charmander", 100, 10, "3", Type.PokemonType.Fire)));
-        
+        battle.Turn = 1;
+        battle.PlayTurn(jugador, new Trainer("Jugador2", new Pokemon("Charmander", 100, 10, "3", Type.PokemonType.Fire)));
         // Ahora verificamos
-        if (battle.Turn == 1)
+        if (battle.ActualTurn == 1)
         {
             bool puedeUsarEspecialTurno1 = false;
             Assert.That(puedeUsarEspecialTurno1, Is.False, "No debe poder usar ataque especial en el primer turno");
@@ -49,10 +49,13 @@ public class AvailableAttacksTest
         {
             bool puedeUsarEspecialTurno1 = true;
         }
-        battle.CompleteBattle(jugador, new Trainer("Jugador2", new Pokemon("Charmander", 100, 10, "3", Type.PokemonType.Fire)));
+
+        // Simulamos el turno 2
+        battle.Turn = 2;
+        battle.PlayTurn(jugador, new Trainer("Jugador2", new Pokemon("Charmander", 100, 10, "3", Type.PokemonType.Fire)));
         
         // Ahora verificamos si puede usar el ataque especial en el segundo turno
-        if (battle.Turn == 1)
+        if (battle.ActualTurn == 1)
         {
             bool puedeUsarEspecialTurno2 = false;
         }
