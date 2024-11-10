@@ -32,12 +32,14 @@ public class Trainer
     /// <param name="ActualPokemon">El pokemon actual del entrenador.</param>
     public Trainer(string name, Pokemon ActualPokemon)
     {
-        Pokemons = new List<Pokemon>();
+        List<Pokemon> Pokemons = new List<Pokemon>();
+        Pokemons.Add(ActualPokemon); // Agrega el pokemon actual a la lista de pokemones y agregar los otros pokemones en el mismo metodo
+        
+        this.Pokemons = Pokemons;
         this.ActualPokemon = ActualPokemon;
         this.name = name;
         
         Items = new List<Items>();
-
         // Agrega items iniciales al entrenador
         Items.Add(new SuperPotion());
         Items.Add(new SuperPotion());
@@ -47,6 +49,35 @@ public class Trainer
         Items.Add(new TotalCure());
         Items.Add(new RevivePotion());
     }
+    
+    /// <summary>
+    /// Agrega los pokemones a la lista de pokemones del entrenador.
+    /// </summary>
+    /// <param name="pokemon">El pokemon a agregar.</param>
+    public void AddPokemon()
+    {
+        while (Pokemons.Count <= 5)     // 5 porque el actual ya cuenta como uno
+        {
+            Console.WriteLine("Ingrese el nombre del pokemon");
+            string name = Console.ReadLine();
+            
+            Console.WriteLine("Ingrese la vida del pokemon");
+            double hp = Convert.ToDouble(Console.ReadLine());
+            
+            Console.WriteLine("Ingrese la capacidad de ataque del pokemon");
+            double attack = Convert.ToDouble(Console.ReadLine());
+            
+            Console.WriteLine("Ingrese el nivel del pokemon");
+            string level = Console.ReadLine();
+            
+            Console.WriteLine("Ingrese el tipo del pokemon");
+            Type.PokemonType type = (Type.PokemonType)Enum.Parse(typeof(Type.PokemonType), Console.ReadLine());
+            
+            Pokemon pokemon = new Pokemon(name, hp, attack, level, type);
+            Pokemons.Add(pokemon);
+        }
+    }
+    
     
     /// <summary>
     /// Calcula la vida total de todos los pokemones del entrenador.
