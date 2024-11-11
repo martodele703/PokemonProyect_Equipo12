@@ -42,23 +42,23 @@ namespace LibraryTests
                 {
                     Console.WriteLine($"{i + 1}. {catalogoPokemon[i].Name}");
                 }
-                    var input = Console.ReadLine();
-                    var inputSinEspacios = input.Replace(" ", "");
-                    if (int.TryParse(inputSinEspacios, out int numeroPokemon))
+                var input = Console.ReadLine();
+                var inputSinEspacios = input.Replace(" ", "");
+                if (int.TryParse(inputSinEspacios, out int numeroPokemon))
+                {
+                    if (numeroPokemon >= 1 && numeroPokemon <= catalogoPokemon.Count)
                     {
-                        if (numeroPokemon >= 1 && numeroPokemon <= catalogoPokemon.Count)
-                        {
-                            jugador.Pokemons.Add(catalogoPokemon[numeroPokemon - 1]);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Número inválido. Intente de nuevo.");
-                        }
+                        jugador.Pokemons.Add(catalogoPokemon[numeroPokemon - 1]);
                     }
                     else
                     {
                         Console.WriteLine("Número inválido. Intente de nuevo.");
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Número inválido. Intente de nuevo.");
+                }
             }
             Assert.That(jugador.Pokemons.Count, Is.EqualTo(6), "El jugador debería tener 6 Pokémon.");
         }
