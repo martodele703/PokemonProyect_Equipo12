@@ -4,9 +4,11 @@ public class WaitList
 {
     private List<Trainer> waitList;
 
-    public WaitList()
+    public WaitList(Trainer? player1 = null, Trainer? player2 = null)
     {
         waitList = new List<Trainer>();
+        waitList.Add(player1);
+        waitList.Add(player2);
     }
 
     public void AddToWaitList(Trainer trainer)

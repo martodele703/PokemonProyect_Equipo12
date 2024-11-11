@@ -40,13 +40,13 @@
         /// </summary>
         /// <param name="playerPokemon">El pokemon del jugador.</param>
         /// <param name="opponentPokemon">El pokemon oponente.</param>
-        public Battle(Pokemon playerPokemon, Pokemon opponentPokemon)
+        public Battle(Pokemon playerPokemon, Pokemon opponentPokemon, WaitList? waitList = null)
         {
             PlayerPokemon = playerPokemon;
             OpponentPokemon = opponentPokemon;
             plays = new Plays();
             ActualTurn = 1;
-            WaitList waitList = new WaitList();
+            this.waitList = waitList;
         }
 
         /// <summary>
@@ -63,18 +63,18 @@
         /// </summary>
         /// <param name="player1">El primer entrenador.</param>
         /// <param name="player2">El segundo entrenador.</param>
-        public void PlayTurn(Trainer player1, Trainer player2)
+        public void PlayTurn(Trainer player1, Trainer player2, string? playsSecuence = null, string? attackIndex = null)
         {
             if (Turn == 1)
             {
                 Console.WriteLine("Turno del jugador 1");
-                plays.PossiblePlays(player1, player2, player1.Items[0], player2.ActualPokemon);
+                plays.PossiblePlays(player1, player2, player1.Items[0], player2.ActualPokemon, playsSecuence, attackIndex);
                 Turn = 2; // Cambia de turno para que vaya el otro jugador
             }
             else
             {
                 Console.WriteLine("Turno del jugador 2");
-                plays.PossiblePlays(player2, player1, player2.Items[0], player1.ActualPokemon);
+                plays.PossiblePlays(player2, player1, player2.Items[0], player1.ActualPokemon, playsSecuence, attackIndex);
                 Turn = 1; // Cambia de turno para el jugador 1
             }
 
@@ -121,7 +121,7 @@
         /// </summary>
         /// <param name="player1">El primer entrenador.</param>
         /// <param name="player2">El segundo entrenador.</param>
-        public void CompleteBattle(Trainer player1, Trainer player2)
+        public void CompleteBattle(Trainer player1, Trainer player2, string? playsSecuence = null, string? attackIndex = null)
         {
             // Verifica si hay suficientes entrenadores en la lista de espera para iniciar una batalla
             if (waitList.HasPlayers())
@@ -139,7 +139,7 @@
                     while (!BattleFinished(player1, player2))
                     {
                         InfoTurn(player1, player2);
-                        PlayTurn(player1, player2);
+                        PlayTurn(player1, player2, playsSecuence, attackIndex);
                     }
 
                     Console.WriteLine("La batalla ha terminado.");

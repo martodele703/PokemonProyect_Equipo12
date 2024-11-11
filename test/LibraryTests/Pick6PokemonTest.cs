@@ -35,12 +35,13 @@ namespace LibraryTests
             var consoleOutput = new StringWriter();
             Console.SetOut(consoleOutput);
             Console.WriteLine("Selecciona tus 6 Pokémon:");
-            while (jugador.Pokemons.Count <= 6)
+            while (jugador.Pokemons.Count < 6)
             {
                 Console.WriteLine("Selecciona un Pokémon. Ingrese el numero del catalogo del Pokemon:");
-                for (int i = 0; i < catalogoPokemon.Count; i++)
+                for (int i = 0; i < 6; i++)
                 {
                     Console.WriteLine($"{i + 1}. {catalogoPokemon[i].Name}");
+                }
                     var input = Console.ReadLine();
                     var inputSinEspacios = input.Replace(" ", "");
                     if (int.TryParse(inputSinEspacios, out int numeroPokemon))
@@ -58,7 +59,6 @@ namespace LibraryTests
                     {
                         Console.WriteLine("Número inválido. Intente de nuevo.");
                     }
-                }
             }
             Assert.That(jugador.Pokemons.Count, Is.EqualTo(6), "El jugador debería tener 6 Pokémon.");
         }

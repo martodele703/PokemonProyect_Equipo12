@@ -55,11 +55,6 @@
             Representa una batalla entre dos entrenadores Pokémon, gestionando turnos, jugadas, y verificando el final del juego.
             </summary>
         </member>
-        <member name="P:Poke.Clases.Battle.AleatoryTurn">
-            <summary>
-            Determina el turno inicial de forma aleatoria entre los dos jugadores.
-            </summary>
-        </member>
         <member name="F:Poke.Clases.Battle.plays">
             <summary>
             Instancia para gestionar las jugadas posibles en cada turno.
@@ -85,7 +80,12 @@
             Contador del turno actual.
             </summary>
         </member>
-        <member name="M:Poke.Clases.Battle.#ctor(Poke.Clases.Pokemon,Poke.Clases.Pokemon)">
+        <member name="F:Poke.Clases.Battle.waitList">
+            <summary>
+            Instancia de WaitList para gestionar los entrenadores en espera.
+            </summary>
+        </member>
+        <member name="M:Poke.Clases.Battle.#ctor(Poke.Clases.Pokemon,Poke.Clases.Pokemon,Poke.Clases.WaitList)">
             <summary>
             Inicializa una nueva instancia de la clase <see cref="T:Poke.Clases.Battle"/>.
             </summary>
@@ -97,7 +97,7 @@
             Determina de forma aleatoria cuál jugador comienza el primer turno.
             </summary>
         </member>
-        <member name="M:Poke.Clases.Battle.PlayTurn(Poke.Clases.Trainer,Poke.Clases.Trainer)">
+        <member name="M:Poke.Clases.Battle.PlayTurn(Poke.Clases.Trainer,Poke.Clases.Trainer,System.String,System.String)">
             <summary>
             Ejecuta un turno de la batalla, permitiendo a un jugador realizar una jugada y luego alterna el turno al otro jugador.
             </summary>
@@ -119,7 +119,7 @@
             <param name="player1">El primer entrenador.</param>
             <param name="player2">El segundo entrenador.</param>
         </member>
-        <member name="M:Poke.Clases.Battle.CompleteBattle(Poke.Clases.Trainer,Poke.Clases.Trainer)">
+        <member name="M:Poke.Clases.Battle.CompleteBattle(Poke.Clases.Trainer,Poke.Clases.Trainer,System.String,System.String)">
             <summary>
             Ejecuta la batalla completa entre dos pokemon, alternando turnos hasta que uno de los jugadores gane.
             </summary>
@@ -131,7 +131,7 @@
             Clase que gestiona las posibles jugadas de un entrenador durante un turno.
             </summary>
         </member>
-        <member name="M:Poke.Clases.Plays.PossiblePlays(Poke.Clases.Trainer,Poke.Clases.Trainer,Poke.Clases.Items,Poke.Clases.Pokemon)">
+        <member name="M:Poke.Clases.Plays.PossiblePlays(Poke.Clases.Trainer,Poke.Clases.Trainer,Poke.Clases.Items,Poke.Clases.Pokemon,System.String,System.String)">
             <summary>
             Permite al entrenador elegir entre atacar, cambiar de Pokémon o usar un ítem.
             </summary>
@@ -175,7 +175,7 @@
         <member name="P:Poke.Clases.Pokemon.Burned">
             <summary>Indica si el Pokémon está quemado.</summary>
         </member>
-        <member name="M:Poke.Clases.Pokemon.#ctor(System.String,System.Double,System.Double,System.String,Poke.Clases.Type.PokemonType)">
+        <member name="M:Poke.Clases.Pokemon.#ctor(System.String,System.Double,System.Double,System.String,Poke.Clases.Type.PokemonType,System.Collections.Generic.List{Poke.Clases.Attack})">
             <summary>
             Constructor para inicializar un Pokémon con su nombre, puntos de vida, capacidad de ataque, estado y tipo.
             </summary>
@@ -286,6 +286,12 @@
             </summary>
             <param name="name">Nombre del entrenador.</param>
             <param name="ActualPokemon">El pokemon actual del entrenador.</param>
+        </member>
+        <member name="M:Poke.Clases.Trainer.AddPokemon">
+            <summary>
+            Agrega los pokemones a la lista de pokemones del entrenador.
+            </summary>
+            <param name="pokemon">El pokemon a agregar.</param>
         </member>
         <member name="M:Poke.Clases.Trainer.PokemonLife">
             <summary>

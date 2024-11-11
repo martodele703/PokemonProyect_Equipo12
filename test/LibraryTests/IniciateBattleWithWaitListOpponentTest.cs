@@ -15,11 +15,15 @@ namespace LibraryTests
         [SetUp]
         public void SetUp()
         {
-            jugador1 = new Trainer("Jugador 1", new Pokemon("Pikachu", 100, 10, "1", Type.PokemonType.Electric));
-            jugador2 = new Trainer("Jugador 2", new Pokemon("Charizard", 100, 10, "2", Type.PokemonType.Fire));
+            Attack ataque = new Attack("relámpago", 30, Type.PokemonType.Electric, false);
+            List<Attack> attackList = new List<Attack>();
+            attackList.Add(ataque);
+            jugador1 = new Trainer("Jugador 1", new Pokemon("Pikachu", 1, 10, "1", Type.PokemonType.Electric, attackList));
+            jugador2 = new Trainer("Jugador 2", new Pokemon("Charizard", 1, 10, "2", Type.PokemonType.Fire, attackList));
             jugador1.Pokemons.Add(jugador1.ActualPokemon);
             jugador2.Pokemons.Add(jugador2.ActualPokemon);
-            battle = new Battle(jugador1.ActualPokemon, jugador2.ActualPokemon);
+            WaitList waitList = new WaitList(jugador1, jugador2);
+            battle = new Battle(jugador1.ActualPokemon, jugador2.ActualPokemon, waitList);
         }
 
         [Test]
@@ -27,7 +31,7 @@ namespace LibraryTests
         {
             var consoleOutput = new StringWriter();
             Console.SetOut(consoleOutput);
-            battle.CompleteBattle(jugador1, jugador2);
+            battle.CompleteBattle(jugador1, jugador2, "1","0");
             Assert.That(consoleOutput.ToString(), Contains.Substring("El jugador 1 comienza la batalla"));
             Assert.That(consoleOutput.ToString(), Contains.Substring("El jugador 2 comienza la batalla"));
         }

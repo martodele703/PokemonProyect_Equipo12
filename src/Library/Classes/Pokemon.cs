@@ -45,14 +45,17 @@ public class Pokemon
     /// <param name="AttackCapacity">Capacidad de ataque del Pokémon.</param>
     /// <param name="state">Estado inicial del Pokémon.</param>
     /// <param name="type">Tipo del Pokémon.</param>
-    public Pokemon(string name, double health, double AttackCapacity, string state, Type.PokemonType type)
+    public Pokemon(string name, double health, double AttackCapacity, string state, Type.PokemonType type, List<Attack>? attackList = null)
     {
         this.Name = name;
         this.Hp = health;
         this.State = state;
         this.AttackCapacity = 1;
-        this.AttackList = new List<Attack>();
         this.Type = type;
+        if (attackList == null)
+        {
+            this.AttackList = new List<Attack>();
+        }
     }
 
     /// <summary>
