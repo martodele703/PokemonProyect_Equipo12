@@ -13,11 +13,6 @@ namespace Poke.Clases
         public string DisplayName { get; }
 
         /// <summary>
-        /// Nombre del entrenador.
-        /// </summary>
-        public string Name { get; }
-
-        /// <summary>
         /// Lista de pokemones del entrenador.
         /// </summary>
         public List<Pokemon> Pokemons { get; }
@@ -39,10 +34,9 @@ namespace Poke.Clases
         /// <param name="displayName">El nombre de usuario de Discord.</param>
         /// <param name="name">Nombre del entrenador.</param>
         /// <param name="actualPokemon">El pokemon inicial del entrenador.</param>
-        public Trainer(string displayName, string name, Pokemon actualPokemon)
+        public Trainer(string displayName, Pokemon actualPokemon)
         {
             DisplayName = displayName;
-            Name = name;
             ActualPokemon = actualPokemon;
             
             Pokemons = new List<Pokemon> { actualPokemon };
