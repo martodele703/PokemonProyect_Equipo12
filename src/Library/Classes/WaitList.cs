@@ -7,8 +7,14 @@ public class WaitList
     public WaitList(Trainer? player1 = null, Trainer? player2 = null)
     {
         waitList = new List<Trainer>();
-        waitList.Add(player1);
-        waitList.Add(player2);
+        if (player1 != null)
+        {
+            waitList.Add(player1);
+        }
+        if (player2 != null)
+        {
+            waitList.Add(player2);
+        }
     }
 
     public void AddToWaitList(Trainer trainer)
@@ -41,7 +47,7 @@ public class WaitList
         return playersToPlay;
     }
 
-    public bool HasPlayers()
+    public bool HasEnoughPlayers()
     {
         return waitList.Count >= 2;
     }

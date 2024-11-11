@@ -124,7 +124,7 @@
         public void CompleteBattle(Trainer player1, Trainer player2, string? playsSecuence = null, string? attackIndex = null)
         {
             // Verifica si hay suficientes entrenadores en la lista de espera para iniciar una batalla
-            if (waitList.HasPlayers())
+            if (waitList.HasEnoughPlayers())
             {
                 var playersToPlay = waitList.CheckIn();
                 if (playersToPlay.Count == 2)
