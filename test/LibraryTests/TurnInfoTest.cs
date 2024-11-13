@@ -1,13 +1,12 @@
 ﻿using NUnit.Framework;
 using Poke.Clases;
-using Type = System.Type;
 
 namespace LibraryTests;
 
 public class TurnInfoTest
 {
-    private OriginalTrainer jugador;
-    private OriginalTrainer oponente;
+    private Trainer jugador;
+    private Trainer oponente;
     private Battle batalla;
 
     [SetUp]
@@ -15,8 +14,8 @@ public class TurnInfoTest
     {
         var pokemon1 = new Pokemon("Pikachu", 100, 10, "1", Poke.Clases.Type.PokemonType.Electric);
         var pokemonOponente = new Pokemon("Charmander", 100, 10, "2", Poke.Clases.Type.PokemonType.Fire);
-        jugador = new OriginalTrainer("Jugador1", pokemon1);
-        oponente = new OriginalTrainer("Jugador2", pokemonOponente);
+        jugador = new Trainer("Jugador1", pokemon1);
+        oponente = new Trainer("Jugador2", pokemonOponente);
         batalla = new Battle(pokemon1, pokemonOponente);
     }
 

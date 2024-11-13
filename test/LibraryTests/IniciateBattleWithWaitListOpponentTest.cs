@@ -1,15 +1,14 @@
 ﻿using NUnit.Framework;
 using Poke.Clases;
 using Type = Poke.Clases.Type;
-using System.IO;
 
 namespace LibraryTests
 {
     [TestFixture]
     public class IniciateBattleWithWaitListOpponentTest
     {
-        private OriginalTrainer jugador1;
-        private OriginalTrainer jugador2;
+        private Trainer jugador1;
+        private Trainer jugador2;
         private Battle battle;
 
         [SetUp]
@@ -18,13 +17,13 @@ namespace LibraryTests
             Attack ataque = new Attack("relámpago", 30, Type.PokemonType.Electric, false);
             List<Attack> attackList = new List<Attack>();
             attackList.Add(ataque);
-            jugador1 = new OriginalTrainer("Jugador 1", new Pokemon("Pikachu", 1, 10, "1", Type.PokemonType.Electric, attackList));
-            jugador2 = new OriginalTrainer("Jugador 2", new Pokemon("Charizard", 1, 10, "2", Type.PokemonType.Fire, attackList));
+            jugador1 = new Trainer("Jugador 1", new Pokemon("Pikachu", 1, 10, "1", Type.PokemonType.Electric, attackList));
+            jugador2 = new Trainer("Jugador 2", new Pokemon("Charizard", 1, 10, "2", Type.PokemonType.Fire, attackList));
             jugador1.Pokemons.Add(jugador1.ActualPokemon);
             jugador2.Pokemons.Add(jugador2.ActualPokemon);
             WaitList waitList = new WaitList(jugador1, jugador2);
             battle = new Battle(jugador1.ActualPokemon, jugador2.ActualPokemon, waitList);
-        }
+        } 
 
         [Test]
         public void NotificarInicioDeBatalla_Test()

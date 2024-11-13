@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 namespace Poke.Clases
 {
     /// <summary>
