@@ -1,15 +1,12 @@
 ﻿namespace Poke.Clases;
 
-/// <summary>
-/// Esta clase representa la lista de jugadores esperando para jugar.
-/// </summary>
 public class WaitList
 {
-    private List<Trainer> waitList;
+    private List<OriginalTrainer> waitList;
 
-    public WaitList(Trainer? player1 = null, Trainer? player2 = null)
+    public WaitList(OriginalTrainer? player1 = null, OriginalTrainer? player2 = null)
     {
-        waitList = new List<Trainer>();
+        waitList = new List<OriginalTrainer>();
         if (player1 != null)
         {
             waitList.Add(player1);
@@ -19,28 +16,19 @@ public class WaitList
             waitList.Add(player2);
         }
     }
-    
-    public bool AddToWaitList(string displayName)
+
+    public void AddToWaitList(OriginalTrainer originalTrainer)
     {
-        if (string.IsNullOrEmpty(displayName))
+        if (originalTrainer != null)
         {
-            throw new ArgumentException(nameof(displayName));
+            waitList.Add(originalTrainer);
+            Console.WriteLine($"{originalTrainer.name} ha sido añadido a la lista de espera.");
         }
-        else
-        {
-            if (this.FindTrainerByDisplayName(displayName) != null)
-            {
-                return false;
-            }
-            waitList.Add( new Trainer(displayName, ));
-            Console.WriteLine($"{waitList.name} ha sido añadido a la lista de espera.");   
-        }
-        return true; //
     }
 
-    public List<Trainer> CheckIn()
+    public List<OriginalTrainer> CheckIn()
     {
-        var playersToPlay = new List<Trainer>();
+        var playersToPlay = new List<OriginalTrainer>();
         
         if (waitList.Count >= 2)
         {
@@ -62,14 +50,5 @@ public class WaitList
     public bool HasEnoughPlayers()
     {
         return waitList.Count >= 2;
-    }
-    
-    public void ShowWaitList()
-    {
-        Console.WriteLine("Lista de espera:");
-        foreach (var player in waitList)
-        {
-            Console.WriteLine(player.name);
-        }
     }
 }
