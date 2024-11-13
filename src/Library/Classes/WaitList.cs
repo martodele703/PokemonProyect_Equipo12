@@ -1,5 +1,8 @@
 ﻿namespace Poke.Clases;
 
+/// <summary>
+/// Esta clase representa la lista de jugadores esperando para jugar.
+/// </summary>
 public class WaitList
 {
     private List<Trainer> waitList;
@@ -16,14 +19,23 @@ public class WaitList
             waitList.Add(player2);
         }
     }
-
-    public void AddToWaitList(Trainer trainer)
+    
+    public bool AddToWaitList(string displayName)
     {
-        if (trainer != null)
+        if (string.IsNullOrEmpty(displayName))
         {
-            waitList.Add(trainer);
-            Console.WriteLine($"{trainer.name} ha sido añadido a la lista de espera.");
+            throw new ArgumentException(nameof(displayName));
         }
+        else
+        {
+            if (this.FindTrainerByDisplayName(displayName) != null)
+            {
+                return false;
+            }
+            waitList.Add( new Trainer(displayName, ));
+            Console.WriteLine($"{waitList.name} ha sido añadido a la lista de espera.");   
+        }
+        return true; //
     }
 
     public List<Trainer> CheckIn()
@@ -50,5 +62,14 @@ public class WaitList
     public bool HasEnoughPlayers()
     {
         return waitList.Count >= 2;
+    }
+    
+    public void ShowWaitList()
+    {
+        Console.WriteLine("Lista de espera:");
+        foreach (var player in waitList)
+        {
+            Console.WriteLine(player.name);
+        }
     }
 }
