@@ -2,11 +2,11 @@
 
 public class WaitList
 {
-    private List<Trainer> waitList;
+    private List<OriginalTrainer> waitList;
 
-    public WaitList(Trainer? player1 = null, Trainer? player2 = null)
+    public WaitList(OriginalTrainer? player1 = null, OriginalTrainer? player2 = null)
     {
-        waitList = new List<Trainer>();
+        waitList = new List<OriginalTrainer>();
         if (player1 != null)
         {
             waitList.Add(player1);
@@ -17,18 +17,18 @@ public class WaitList
         }
     }
 
-    public void AddToWaitList(Trainer trainer)
+    public void AddToWaitList(OriginalTrainer originalTrainer)
     {
-        if (trainer != null)
+        if (originalTrainer != null)
         {
-            waitList.Add(trainer);
-            Console.WriteLine($"{trainer.name} ha sido añadido a la lista de espera.");
+            waitList.Add(originalTrainer);
+            Console.WriteLine($"{originalTrainer.name} ha sido añadido a la lista de espera.");
         }
     }
 
-    public List<Trainer> CheckIn()
+    public List<OriginalTrainer> CheckIn()
     {
-        var playersToPlay = new List<Trainer>();
+        var playersToPlay = new List<OriginalTrainer>();
         
         if (waitList.Count >= 2)
         {

@@ -7,16 +7,16 @@ namespace LibraryTests;
 [TestFixture]
 public class PlayersWaitListTest
 {
-    private Trainer trainer1;
-    private Trainer trainer2;
+    private OriginalTrainer trainer1;
+    private OriginalTrainer trainer2;
     private Pokemon pokemon;
 
     [SetUp]
     public void SetUp()
     {
         pokemon = new Pokemon("Pikachu", 100, 10, "1", Poke.Clases.Type.PokemonType.Electric);
-        trainer1 = new Trainer("Jugador1", pokemon);
-        trainer2 = new Trainer("Jugador1", pokemon);
+        trainer1 = new OriginalTrainer("Jugador1", pokemon);
+        trainer2 = new OriginalTrainer("Jugador1", pokemon);
     }
 
     [Test]
@@ -31,9 +31,9 @@ public class PlayersWaitListTest
     public void AddToWaitList_AddsTrainer_WhenTrainerIsNotNull()
     {
         WaitList waitList = new WaitList();
-        Trainer newTrainer = new Trainer("NewPlayer", pokemon);
+        OriginalTrainer newOriginalTrainer = new OriginalTrainer("NewPlayer", pokemon);
         
-        waitList.AddToWaitList(newTrainer);
+        waitList.AddToWaitList(newOriginalTrainer);
         
         Assert.That(waitList.HasEnoughPlayers(), Is.True, "El entrenador debería haber sido añadido a la lista de espera.");
     }
@@ -53,7 +53,7 @@ public class PlayersWaitListTest
     {
         WaitList waitList = new WaitList(trainer1, trainer2);
         
-        List<Trainer> playersToPlay = waitList.CheckIn();
+        List<OriginalTrainer> playersToPlay = waitList.CheckIn();
 
         Assert.That(playersToPlay.Count, Is.EqualTo(2), "Debería haber dos jugadores listos para jugar.");
         Assert.That(waitList.HasEnoughPlayers(), Is.False, "La lista de espera debería estar vacía después de remover dos jugadores.");
@@ -64,7 +64,7 @@ public class PlayersWaitListTest
     {
         WaitList waitList = new WaitList(trainer1);
         
-        List<Trainer> playersToPlay = waitList.CheckIn();
+        List<OriginalTrainer> playersToPlay = waitList.CheckIn();
         
         Assert.That(playersToPlay.Count, Is.EqualTo(0), "No debería haber jugadores listos para jugar.");
         Assert.That(waitList.HasEnoughPlayers(), Is.False, "La lista de espera no debería tener jugadores suficientes.");
